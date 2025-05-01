@@ -5,7 +5,6 @@
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <meta http-equiv="refresh" content="0;url=pages/index.html" /> -->
 
     <title>Homepage</title>
 
@@ -13,6 +12,12 @@
 
     <link rel="stylesheet" href="src/main.css" />
     <link rel="stylesheet" href="src/colourTheme.css" />
+
+    <script>
+      if (window.location.hostname.endsWith(".github.io")) {
+        window.location.href = "pages/index.html";
+      }
+    </script>
   </head>
   <body>
     <div class="container">
@@ -43,11 +48,5 @@
 
     <script src="src/main.js"></script>
     <script src="src/colourTheme.js"></script>
-
-    <script>
-      if (window.location.hostname.endsWith(".github.io")) {
-        window.location.href = "pages/index.html";
-      }
-    </script>
   </body>
 </html>
