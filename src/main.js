@@ -15,12 +15,16 @@ function closeDetails() {
 }
 
 function handleKeyRelease(event) {
-  if (event.key === "Enter") {
+  if (event.altKey && event.key === "Enter") {
     openDetails();
-  } else if (event.key == "Backspace") {
+  } else if (event.altKey && event.key == "Backspace") {
     closeDetails();
   } else if (event.altKey && event.code === "KeyR") {
     clearCacheAndReload();
+  } else if (event.altKey && event.code === "Slash") {
+    showHelp((fromConsole = false));
+  } else if (event.altKey && event.key === "c") {
+    getLatestCommitMessage();
   }
 }
 
@@ -60,3 +64,88 @@ function clearCacheAndReload() {
     window.location.reload(true);
   }
 }
+
+function showHelp(fromConsole = true) {
+  console.log(
+    `%cAlt+R%c
+  Clear cache and reload
+%cAlt+Enter%c
+  Open all details
+%cAlt+Backspace%c
+  Close all details
+%cAlt+/%c
+  Show help message
+%cAlt+C%c
+  Show the latest commit`,
+    "font-weight: bold;",
+    "font-weight: unset;",
+    "font-weight: bold;",
+    "font-weight: unset;",
+    "font-weight: bold;",
+    "font-weight: unset;",
+    "font-weight: bold;",
+    "font-weight: unset;",
+    "font-weight: bold;",
+    "font-weight: unset;"
+  );
+
+  if (!fromConsole) {
+    let key = "F12";
+
+    const ua = navigator.userAgent;
+
+    if (ua.includes("Firefox")) {
+      key = "Ctrl+Shift+K";
+    } else if (ua.includes("Edg")) {
+      key = "Ctrl+Shift+I"; // Edge
+    } else if (ua.includes("Chrome")) {
+      key = "Ctrl+Shift+J"; // Chrome
+    } else if (ua.includes("Safari") && !ua.includes("Chrome")) {
+      key = "Cmd+Option+C"; // Safari on Mac
+    }
+
+    alert(`A help message has been issued via the console.
+To open the console, try pressing ${key}.
+To avoid this popup in the future, use showHelp() instead.`);
+  }
+}
+
+async function getLatestCommitMessage() {
+  const url =
+    "https://api.github.com/repos/abnormalnormality/alia/commits/main";
+
+  try {
+    const response = await fetch(url);
+
+    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+    const data = await response.json();
+
+    const isoDate = data.commit.author.date;
+    const formattedDate = new Date(isoDate).toLocaleString("en-Au", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+      timeZoneName: "shortGeneric",
+    });
+
+    author = data.commit.author;
+    message = data.commit.message;
+
+    console.log(`[${formattedDate}, ${author.name}]
+ '${message}'`);
+  } catch (error) {}
+}
+
+console.log(
+  `Follow me on %cGitHub%c at https://github.com/AbnormalNormality!
+Use %cAlt+/%c or %cshowHelp()%c to see listed keybinds.`,
+  "font-weight: bold;",
+  "font-weight: unset;",
+  "font-weight: bold;",
+  "font-weight: unset;",
+  "font-weight: bold;",
+  "font-weight: unset;"
+);

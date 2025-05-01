@@ -164,6 +164,14 @@ p,
 button {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: var(--text-colour);
+}
+
+h1,
+h2,
+li::before,
+a,
+p,
+button {
   width: fit-content;
 }
 
