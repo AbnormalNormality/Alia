@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base href="" />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <meta http-equiv="refresh" content="0;url=pages/index.html" /> -->
+
+    <title>Homepage</title>
+
+    <link rel="icon" href="assets/favicon-1.png" type="image/x-icon" />
+
+    <link rel="stylesheet" href="src/main.css" />
+    <link rel="stylesheet" href="src/colourTheme.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>H1</h1>
+
+      <ul id="contents">
+        <h2>Contents</h2>
+        <li><a href="index.html">Homepage</a></li>
+        <li><a href="index.html#summary">Homepage - Summary</a></li>
+      </ul>
+
+      <details id="summary">
+        <summary>Summary</summary>
+
+        <h2>H2</h2>
+        <p>Details content</p>
+      </details>
+
+      <p>
+        You are in <span class="lightOnly boxed">light</span
+        ><span class="darkOnly boxed">dark</span> mode
+      </p>
+
+      <button onclick="window.location.href='pages/index.html'">
+        Continue to website
+      </button>
+    </div>
+
+    <script src="src/main.js"></script>
+    <script src="src/colourTheme.js"></script>
+
+    <script>
+      if (window.location.hostname.endsWith(".github.io")) {
+        window.location.href = "pages/index.html";
+      }
+    </script>
+  </body>
+</html>

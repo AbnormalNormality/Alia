@@ -1,0 +1,33 @@
+{
+  "Page Template": {
+    "prefix": "page",
+    "body": [
+      "<!DOCTYPE html>",
+      "<html lang=\"en\">",
+      "  <head>",
+      "    <base href=\"../\" />",
+      "",
+      "    <meta charset=\"UTF-8\" />",
+      "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />",
+      "",
+      "    <title>${1:Page Title}</title>",
+      "",
+      "    <link rel=\"icon\" href=\"assets/favicon-1.png\" type=\"image/x-icon\" />",
+      "",
+      "    <link rel=\"stylesheet\" href=\"src/main.css\" />",
+      "    <link rel=\"stylesheet\" href=\"src/colourTheme.css\" />",
+      "  </head>",
+      "  <body>",
+      "    <div class=\"container\">",
+      "      <h1>${2:Page Heading}</h1>",
+      "",
+      "      ${3}",
+      "    </div>",
+      "",
+      "    <script src=\"src/main.js\"></script>",
+      "    <script src=\"src/colourTheme.js\"></script>",
+      "  </body>",
+      "</html>"
+    ]
+  }
+}
