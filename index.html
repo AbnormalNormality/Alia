@@ -14,8 +14,12 @@
     <link rel="stylesheet" href="src/colourTheme.css" />
 
     <script>
-      if (window.location.hostname.endsWith(".github.io")) {
-        window.location.href = "pages/index.html";
+      if (location.hostname && location.hostname !== "127.0.0.1") {
+        const style = document.createElement("style");
+        style.textContent = "body > * { display: none; }";
+        document.head.appendChild(style);
+
+        location.replace("pages/index.html");
       }
     </script>
   </head>
