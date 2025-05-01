@@ -1,13 +1,7 @@
 function updateModeDisplay() {
   const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-  document.querySelectorAll(".lightOnly").forEach((el) => {
-    el.style.display = isDark ? "none" : "";
-  });
-
-  document.querySelectorAll(".darkOnly").forEach((el) => {
-    el.style.display = isDark ? "" : "none";
-  });
+  document.body.classList.toggle("dark-mode", isDark);
+  document.body.classList.toggle("light-mode", !isDark);
 }
 
 updateModeDisplay();
