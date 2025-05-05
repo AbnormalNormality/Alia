@@ -25,6 +25,8 @@ function handleKeyRelease(event) {
     showHelp((fromConsole = false));
   } else if (event.altKey && event.key === "c") {
     getLatestCommitMessage();
+  } else if (event.altKey && event.key === "g") {
+    window.open("https://github.com/AbnormalNormality/Alia", "_blank");
   }
 }
 
@@ -76,7 +78,11 @@ function showHelp(fromConsole = true) {
 %cAlt+/%c
   Show help message
 %cAlt+C%c
-  Show the latest commit`,
+  Show the latest commit
+%cAlt+G%c
+  Visit this pages repository`,
+    "font-weight: bold;",
+    "font-weight: unset;",
     "font-weight: bold;",
     "font-weight: unset;",
     "font-weight: bold;",
