@@ -149,3 +149,66 @@ Use %cAlt+/%c or %cshowHelp()%c to see listed keybinds.`,
   "font-weight: bold;",
   "font-weight: unset;"
 );
+
+document.querySelectorAll(".sort-children").forEach((list) => {
+  const items = Array.from(list.children);
+
+  const key = list.getAttribute("sorting-key") || "value";
+  const order = list.getAttribute("sorting-order") || "ascending";
+
+  const isDescending = ["descending", "reverse"].includes(order.toLowerCase());
+
+  items.sort((a, b) => {
+    const aValue = parseFloat(a.getAttribute(key));
+    const bValue = parseFloat(b.getAttribute(key));
+
+    return isDescending
+      ? bValue - aValue // descending
+      : aValue - bValue; // ascending
+  });
+
+  list.innerHTML = "";
+  items.forEach((item) => list.appendChild(item));
+});
+
+const pages = {
+  Homepage: "pages/index.html",
+  Who: [
+    "pages/who.html#who-am-i",
+    {
+      "Who - Who Am I?": "pages/who.html",
+    },
+  ],
+  Music: [
+    "pages/music.html",
+    {
+      "Music - Peter": "pages/music.html#peter",
+    },
+  ],
+};
+
+function buildContents() {
+  const contentsElement = document.getElementById("contents");
+  if (!contentsElement) return;
+
+  let html = "<h2>Contents</h2><ul>";
+
+  for (const [section, value] of Object.entries(pages)) {
+    if (typeof value === "string") {
+      html += `<li><a href="${value}">${section}</a></li>`;
+    } else if (Array.isArray(value)) {
+      const [mainLink, subItems] = value;
+      html += `<li><a href="${mainLink}">${section}</a>`;
+      html += "<ul>";
+      for (const [subTitle, subLink] of Object.entries(subItems)) {
+        html += `<li><a href="${subLink}">${subTitle}</a></li>`;
+      }
+      html += "</ul></li>";
+    }
+  }
+
+  html += "</ul>";
+  contentsElement.innerHTML = html;
+}
+
+document.addEventListener("DOMContentLoaded", buildContents);

@@ -21,7 +21,7 @@
       "    <div class=\"container\">",
       "      <h1>${2:Page Heading}</h1>",
       "",
-      "      ${3}",
+      "      $3",
       "    </div>",
       "",
       "    <script src=\"src/main.js\"></script>",
@@ -29,5 +29,13 @@
       "  </body>",
       "</html>"
     ]
+  },
+  "Light Only Span": {
+    "prefix": "lightOnly-span",
+    "body": ["<span class=\"lightOnly boxed\">$0</span>"]
+  },
+  "Dark Only Span": {
+    "prefix": "darkOnly-span",
+    "body": ["<span class=\"darkOnly boxed\">$0</span>"]
   }
 }
